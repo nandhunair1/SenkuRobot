@@ -30,6 +30,4 @@ spamwatch
 alphabet_detector
 pyrate-limiter
 cachetools
-pybase64
-pySmartDL
-youtube_dl
+fontTools
