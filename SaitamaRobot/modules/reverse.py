@@ -184,7 +184,7 @@ __help__ = """
    /Reverse :- Please reply to a sticker, or an image to search it!
 Do you know that you can search an image with a link too? /reverse picturelink <amount>.
 """
-__mod_name__ = "Photo"
+__mod_name__ = "Reverse"
 
 REVERSE_HANDLER = DisableAbleCommandHandler(
     "reverse", reverse, pass_args=True, admin_ok=True
