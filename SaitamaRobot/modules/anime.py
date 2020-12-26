@@ -12,9 +12,12 @@ from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
 from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
 
 info_btn = "More Information"
-kaizoku_btn = "Kaizoku ☠️"
+kaizoku_btn = "Kaizoku 💓"
 kayo_btn = "Kayo 🏴‍☠️"
-anidl_btn = "anidl🎧"
+animeacedemy_btn = "AnimeAcedemy 👑"
+hsa_btn = "HindiSubbedAnime 👊"
+ast_btn = "AnimeSubbingTeam☠️"
+atf_btn = "ATF Anime 🍿"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
 close_btn = "Close ❌"
@@ -527,12 +530,12 @@ def site_search(update: Update, context: CallbackContext, site: str):
                 result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>"
                 more_results = False
                 break
-            
+
             post_link = entry.a['href']
             post_name = html.escape(entry.text.strip())
             result += f"• <a href='{post_link}'>{post_name}</a>\n"
-
-        elif site == "anidl":
+            
+    elif site == "anidl":
         search_url = f"https://anidl.org/?s={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
@@ -550,7 +553,7 @@ def site_search(update: Update, context: CallbackContext, site: str):
            post_name = html.escape(entry.text.strip())
            result += f"• <a href='{post_link}'>{post_name}</a>\n"
            
-           buttons = [[InlineKeyboardButton("See all results", url=search_url)]]
+      buttons = [[InlineKeyboardButton("See all results", url=search_url)]]
 
     if more_results:
         message.reply_text(
@@ -571,12 +574,11 @@ def kaizoku(update: Update, context: CallbackContext):
 @run_async
 def kayo(update: Update, context: CallbackContext):
     site_search(update, context, "kayo")
-
-
+    
 @run_async
 def anidl(update: Update, context: CallbackContext):
     site_search(update, context, "anidl")
-
+   
 
 __help__ = """
 Get information about anime, manga or characters from [AniList](anilist.co).
@@ -620,7 +622,7 @@ dispatcher.add_handler(UPCOMING_HANDLER)
 __mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "kaizoku", "airing",
-    "kayo" , "anidl"
+    "kayo" "anidl",
 ]
 __handlers__ = [
     ANIME_HANDLER, CHARACTER_HANDLER, MANGA_HANDLER, USER_HANDLER,
