@@ -12,8 +12,12 @@ from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
 from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
 
 info_btn = "More Information"
-kaizoku_btn = "Kaizoku ☠️"
+kaizoku_btn = "Kaizoku 💓"
 kayo_btn = "Kayo 🏴‍☠️"
+anidl_btn = "AniDL 😎"
+gganime_btn = "GoGoAnime🙃"
+ast_btn = "AnimeSubbingTeam☠️"
+al_btn = "AnimeLab 🍿"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
 close_btn = "Close ❌"
@@ -530,6 +534,78 @@ def site_search(update: Update, context: CallbackContext, site: str):
             post_link = entry.a['href']
             post_name = html.escape(entry.text.strip())
             result += f"• <a href='{post_link}'>{post_name}</a>\n"
+            
+    elif site == "anidl":
+        search_url = f"https://anidl.org/?s={search_query}"
+        html_text = requests.get(search_url).text
+        soup = bs4.BeautifulSoup(html_text, "html.parser")
+        search_result = soup.find_all("h2", {'class': "title"}) 
+        
+        result = f"<b>Search results for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AniDL</code>: \n"
+        for entry in search_result:
+                 
+           if entry.text.strip() == "Nothing Found":
+                result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AniDL</code>"
+                more_results = False
+                break
+                
+           post_link = entry.a['href']
+           post_name = html.escape(entry.text.strip())
+           result += f"• <a href='{post_link}'>{post_name}</a>\n"
+           
+    elif site == "gganime":
+        search_url = f"https://gogoanime.so/={search_query}"
+        html_text = requests.get(search_url).text
+        soup = bs4.BeautifulSoup(html_text, "html.parser")
+        search_result = soup.find_all("h2", {'class': "title"}) 
+        
+        result = f"<b>Search results for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>Gogoanime</code>: \n"
+        for entry in search_result:
+                 
+           if entry.text.strip() == "Nothing Found":
+                result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>Gogoanime</code>"
+                more_results = False
+                break
+                
+           post_link = entry.a['href']
+           post_name = html.escape(entry.text.strip())
+           result += f"• <a href='{post_link}'>{post_name}</a>\n"
+           
+    elif site == "ast":
+        search_url = f"https://animesubingteam.000webhostapp.com/?s={search_query}"
+        html_text = requests.get(search_url).text
+        soup = bs4.BeautifulSoup(html_text, "html.parser")
+        search_result = soup.find_all("h2", {'class': "title"})
+
+        result = f"<b>Search results for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeSubbingTeam</code>: \n"
+        for entry in search_result:
+
+            if entry.text.strip() == "Nothing Found":
+                result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AST</code>"
+                more_results = False
+                break
+
+            post_link = entry.a['href']
+            post_name = html.escape(entry.text.strip())
+            result += f"• <a href='{post_link}'>{post_name}</a>\n"
+
+    elif site == "al":
+        search_url = f"https://www.animelab.com/search?searchTerms={search_query}"
+        html_text = requests.get(search_url).text
+        soup = bs4.BeautifulSoup(html_text, "html.parser")
+        search_result = soup.find_all("h2", {'class': "title"})
+
+        result = f"<b>Search results for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeLab</code>: \n"
+        for entry in search_result:
+
+            if entry.text.strip() == "Nothing Found":
+                result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeLab</code>"
+                more_results = False
+                break
+
+            post_link = entry.a['href']
+            post_name = html.escape(entry.text.strip())
+            result += f"• <a href='{post_link}'>{post_name}</a>\n"
 
     buttons = [[InlineKeyboardButton("See all results", url=search_url)]]
 
@@ -552,6 +628,22 @@ def kaizoku(update: Update, context: CallbackContext):
 @run_async
 def kayo(update: Update, context: CallbackContext):
     site_search(update, context, "kayo")
+    
+@run_async
+def anidl(update: Update, context: CallbackContext):
+    site_search(update, context, "anidl")
+   
+@run_async
+def gganime(update: Update, context: CallbackContext):
+    site_search(update, context, "gganime")
+    
+@run_async
+def ast(update: Update, context: CallbackContext):
+    site_search(update, context, "ast")
+
+@run_async
+def al(update: Update, context: CallbackContext):
+    site_search(update, context, "al")
 
 
 __help__ = """
@@ -566,6 +658,10 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
  • `/kaizoku <anime>`*:* search an anime on animekaizoku.com
  • `/kayo <anime>`*:* search an anime on animekayo.com
+ • `/anidl <anime>`*:* search an anime on anidl.org
+ • `/gganime <anime>`*:* search an anime on gogoanime.so
+ • `/ast <anime>`*:* search an anime on animesubingteam.000webhostapp.com
+ • `/al <anime>`*:* search an anime on animelab.com
  • `/airing <anime>`*:* returns anime airing info.
 
  """
@@ -578,6 +674,10 @@ USER_HANDLER = DisableAbleCommandHandler("user", user)
 UPCOMING_HANDLER = DisableAbleCommandHandler("upcoming", upcoming)
 KAIZOKU_SEARCH_HANDLER = DisableAbleCommandHandler("kaizoku", kaizoku)
 KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo)
+ANIDL_SEARCH_HANDLER = DisableAbleCommandHandler("anidl", anidl)
+GGANIME_SEARCH_HANDLER = DisableAbleCommandHandler("gganime", gganime)
+AST_SEARCH_HANDLER = DisableAbleCommandHandler("ast", ast)
+AL_SEARCH_HANDLER = DisableAbleCommandHandler("al", al)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
 
 dispatcher.add_handler(BUTTON_HANDLER)
@@ -588,15 +688,19 @@ dispatcher.add_handler(AIRING_HANDLER)
 dispatcher.add_handler(USER_HANDLER)
 dispatcher.add_handler(KAIZOKU_SEARCH_HANDLER)
 dispatcher.add_handler(KAYO_SEARCH_HANDLER)
+dispatcher.add_handler(ANIDL_SEARCH_HANDLER)
+dispatcher.add_handler(GGANIME_SEARCH_HANDLER)
+dispatcher.add_handler(AST_SEARCH_HANDLER)
+dispatcher.add_handler(ANIMELAB_SEARCH_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
 
 __mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "kaizoku", "airing",
-    "kayo"
+    "kayo" "anidl", "gganime", "ast", "animelab",
 ]
 __handlers__ = [
     ANIME_HANDLER, CHARACTER_HANDLER, MANGA_HANDLER, USER_HANDLER,
     UPCOMING_HANDLER, KAIZOKU_SEARCH_HANDLER, KAYO_SEARCH_HANDLER,
-    BUTTON_HANDLER, AIRING_HANDLER
+     ANIDL_SEARCH_HANDLER,  GGANIME_SEARCH_HANDLER,  AST_SEARCH_HANDLER,  AL_SEARCH_HANDLER, BUTTON_HANDLER, AIRING_HANDLER
 ]
