@@ -691,7 +691,7 @@ dispatcher.add_handler(KAYO_SEARCH_HANDLER)
 dispatcher.add_handler(ANIDL_SEARCH_HANDLER)
 dispatcher.add_handler(GGANIME_SEARCH_HANDLER)
 dispatcher.add_handler(AST_SEARCH_HANDLER)
-dispatcher.add_handler(ANIMELAB_SEARCH_HANDLER)
+dispatcher.add_handler(AL_SEARCH_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
 
 __mod_name__ = "Anime"
