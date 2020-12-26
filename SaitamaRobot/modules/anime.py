@@ -554,7 +554,7 @@ def site_search(update: Update, context: CallbackContext, site: str):
            result += f"• <a href='{post_link}'>{post_name}</a>\n"
            
     elif site == "gganime":
-        search_url = f"https://gogoanime.so/={search_query}"
+        search_url = f"https://gogoanime.so/category/={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {'class': "title"}) 
@@ -590,7 +590,7 @@ def site_search(update: Update, context: CallbackContext, site: str):
             result += f"• <a href='{post_link}'>{post_name}</a>\n"
 
     elif site == "al":
-        search_url = f"https://www.animelab.com/search?searchTerms={search_query}"
+        search_url = f"https://www.animelab.com/shows/search?searchTerms={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {'class': "title"})
