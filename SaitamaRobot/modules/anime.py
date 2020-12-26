@@ -14,7 +14,7 @@ from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
 info_btn = "More Information"
 kaizoku_btn = "Kaizoku 💓"
 kayo_btn = "Kayo 🏴‍☠️"
-animeacedemy_btn = "Anidl🎧"
+anidl_btn = "Anidl🎧"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
 close_btn = "Close ❌"
