@@ -107,19 +107,4 @@ def reverse(update: Update, context:CallbackContext):
                                                     return
         images = scam(imgspage, lim)
                 if len(images) == 0:
-                            xx.edit_text(f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})"
-                                                      "\nCouldn't fetch any images.", parse_mode='Markdown', disable_web_page_preview=True)
-                                                                  return
-        imglinks = []
-                for link in images:
-                            lmao = InputMediaPhoto(media=str(link))
-                                        imglinks.append(lmao)
-        bot.send_media_group(chat_id=chat_id, media=imglinks, reply_to_message_id=rtmid)
-                xx.edit_text(f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})", parse_mode='Markdown', disable_web_page_preview=True)
-                    except TelegramError as e:
-                            print(e)
-                                except Exception as exception:
-                                        print(exception)
-def ParseSauce(googleurl):
-    """Parse/Scrape the HTML code for the info we want."""
-    source = o
+                            xx.edit_text(f"[{guess}]({fetchUrl})\n[Visually similar images]({use= o
