@@ -56,6 +56,7 @@ Hi {}, my name is {}!
 I am an Anime themed group management bot.
 I am an Amazing group management bot.
 Made With ❤ I specialize in managing your group with my advance features.
+
 You can find my list of available commands with /help.
 """
 
