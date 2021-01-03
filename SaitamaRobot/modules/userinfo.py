@@ -291,7 +291,7 @@ def info(update: Update, context: CallbackContext):
         disaster_level_present = True
 
     if disaster_level_present:
-        text += ' [<a href="https://t.me/BotLabUpdates/33">?</a>]'.format(
+        text += ' [<a href="https://t.me/KOROSENSEILOG/75">?</a>]'.format(
             bot.username)
 
     try:
@@ -461,7 +461,7 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         if user_id == bot.id and sender_id not in DEV_USERS:
             message.reply_text(
-                "Erm... yeah, I only trust Heroes Association to set my bio.")
+                "Erm... yeah, I only trust Sensei Association to set my bio.")
             return
 
         text = message.text
