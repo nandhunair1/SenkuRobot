@@ -210,13 +210,13 @@ def start(update: Update, context: CallbackContext):
                              text=" Support Group",
                              url=f"https://t.me/{SUPPORT_CHAT}"),
                          InlineKeyboardButton(
-                             text=" Log Channel",
-                             url="https://t.me/KOROSENSEILOG")
+                             text=" Update Channel",
+                             url="https://t.me/KoroSenseiUpdate")
                      ],
                      [
                          InlineKeyboardButton(
                              text=" Getting started guide",
-                             url="https://t.me/OnePunchUpdates/29")
+                             url="https://t.me/koroSenseiUpdate/5")
                      ],
                      [
                          InlineKeyboardButton(
