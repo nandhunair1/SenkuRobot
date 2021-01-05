@@ -59,8 +59,10 @@ You can find the list of available commands with /help
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a part of Pokemon
-Have a look at the following for an idea of some of the things I can help you with.
+I am an Anime themed group management bot.
+Made With ❤ I specialize in managing your group with my advance features.
+
+You can find my list of available commands with /help.
 
 *Main* commands available:
  • /help: PM's you this message.
@@ -77,7 +79,7 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-SAITAMA_IMG = "https://telegra.ph/file/2bbe6208b097878d44d26.jpg"
+SAITAMA_IMG = ""
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
 Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
@@ -210,17 +212,17 @@ def start(update: Update, context: CallbackContext):
                              url=f"https://t.me/{SUPPORT_CHAT}"),
                          InlineKeyboardButton(
                              text="🔔Updates Channel",
-                             url="https://t.me/BotLabUpdates")
+                             url="https://t.me/KoroSenseiUpdate")
                      ],
                      [
                          InlineKeyboardButton(
                              text="📖 Getting Started Guide",
-                             url="https://t.me/BotLabUpdates/3")
+                             url="https://t.me/koroSenseiUpdate/5")
                      ],
                      [
                          InlineKeyboardButton(
                              text="💾 Source Code.",
-                             url="https://github.com/Uday0011/Ash")
+                             url="https://github.com/Koro-Sensei/Haruki")
                      ]]))
     else:
         update.effective_message.reply_text(
