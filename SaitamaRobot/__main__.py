@@ -53,16 +53,14 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 Hi {}, my name is {}! 
-I am an Anime themed group management bot.
-I am an Amazing group management bot.
-Made With ❤ I specialize in managing your group with my advance features.
-
-You can find my list of available commands with /help.
+I am an Anime themed group management bot with some fun extras ;)
+You can find the list of available commands with /help
 """
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a Teacher who will made your group secure and help admins manage their groups with Anime Sensei! Have a look at the following for an idea of some of the things I can help you with.
+I'm a part of Pokemon
+Have a look at the following for an idea of some of the things I can help you with.
 
 *Main* commands available:
  • /help: PM's you this message.
@@ -79,7 +77,7 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-SAITAMA_IMG = "https://telegra.ph/file/357bdf7ba11ecc60f66e6.jpg"
+SAITAMA_IMG = "https://telegra.ph/file/2bbe6208b097878d44d26.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
 Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
@@ -202,32 +200,31 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text=" Add Koro Sensei to your group",
+                            text="🧲Add Ash Ketchum to your group!",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],
                      [
                          InlineKeyboardButton(
-                             text=" Support Group",
+                             text="⚙️ Support Group",
                              url=f"https://t.me/{SUPPORT_CHAT}"),
                          InlineKeyboardButton(
-                             text=" Update Channel",
-                             url="https://t.me/KoroSenseiUpdate")
+                             text="🔔Updates Channel",
+                             url="https://t.me/BotLabUpdates")
                      ],
                      [
                          InlineKeyboardButton(
-                             text=" Getting started guide",
-                             url="https://t.me/koroSenseiUpdate/5")
+                             text="📖 Getting Started Guide",
+                             url="https://t.me/BotLabUpdates/3")
                      ],
                      [
                          InlineKeyboardButton(
-                             text=" Source code",
-                             url="https://github.com/Koro-Sensei-0/Haruki")
+                             text="💾 Source Code.",
+                             url="https://github.com/Uday0011/Ash")
                      ]]))
     else:
         update.effective_message.reply_text(
-            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>"
-            .format(uptime),
+            "I'm online!\n<b>Up since:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
 
 
@@ -541,16 +538,6 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
-
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-        try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online!")
-        except Unauthorized:
-            LOGGER.warning(
-                "Bot isnt able to send message to support_chat, go and check!")
-        except BadRequest as e:
-            LOGGER.warning(e.message)
-
     test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start)
 
