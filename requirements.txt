@@ -36,5 +36,6 @@ alphabet_detector
 pyrate-limiter
 gtts
 nekos.py
-base64
+pybase64
 youtube_dl
+pySmartDl
