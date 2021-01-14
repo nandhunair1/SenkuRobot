@@ -40,3 +40,6 @@ pybase64
 youtube_dl
 pySmartDL
 pytz
+validators
+pyrogram
+tgcrypto
