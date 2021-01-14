@@ -38,4 +38,5 @@ gtts
 nekos.py
 pybase64
 youtube_dl
-pySmartDl
+pySmartDL
+pytz
