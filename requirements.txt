@@ -43,3 +43,5 @@ pytz
 validators
 pyrogram
 tgcrypto
+hachoir
+configparser
