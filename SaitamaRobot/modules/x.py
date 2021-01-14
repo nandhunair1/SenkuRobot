@@ -92,11 +92,11 @@ def neko(update, context):
 #    msg.reply_photo(nekos.img(target))
 
 
-@run_async
-def lesbian(update, context):
-     msg = update.effective_message
-     target = "les"
-     msg.reply_video(nekos.img(target))
+#@run_async
+#def lesbian(update, context):
+#     msg = update.effective_message
+#     target = "les"
+#     msg.reply_video(nekos.img(target))
 
 
 #@run_async
@@ -423,7 +423,7 @@ NEKO_HANDLER = CommandHandler("neko", neko)
 #SOLOGIF_HANDLER = CommandHandler("sologif", sologif)
 #CUMGIF_HANDLER = CommandHandler("cumgif", cumgif)
 #EROKEMO_HANDLER = CommandHandler("erokemo", erokemo)
-LESBIAN_HANDLER = CommandHandler("lesbian", lesbian)
+#LESBIAN_HANDLER = CommandHandler("lesbian", lesbian)
 #WALLPAPER_HANDLER = CommandHandler("wallpaper", wallpaper)
 #LEWDK_HANDLER = CommandHandler("lewdk", lewdk)
 #NGIF_HANDLER = CommandHandler("ngif", ngif)
