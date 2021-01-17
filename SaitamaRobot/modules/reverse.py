@@ -12,9 +12,7 @@ from telegram import Update
 from telegram.ext import CallbackContext, run_async
 
 from SaitamaRobot import dispatcher
-
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
-from SaitamaRobot.modules.helper_funcs.alternate import typing_action
 
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
@@ -82,7 +80,7 @@ def reverse(update: Update, context:CallbackContext):
             msg.reply_text(f"{VE}\nPlease try again using http or https protocol.")
             return
     else:
-        msg.reply_markdown("Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? /reverse [picturelink] <amount>.")
+        msg.reply_markdown("Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? `/reverse [picturelink] <amount>`.")
         return
 
     try:
@@ -92,7 +90,7 @@ def reverse(update: Update, context:CallbackContext):
         fetchUrl = response.headers['Location']
 
         if response != 400:
-            xx = bot.send_message(chat_id, "Chaliyeh chutiyapa karte hai!."
+            xx = bot.send_message(chat_id, "Image was successfully uploaded to Google."
                                   "\nParsing it, please wait.", reply_to_message_id=rtmid)
         else:
             xx = bot.send_message(chat_id, "Google told me to go away.", reply_to_message_id=rtmid)
@@ -107,14 +105,14 @@ def reverse(update: Update, context:CallbackContext):
             imgspage = match['similar_images']
 
         if guess and imgspage:
-            xx.edit_text(f"[{guess}]({fetchUrl})\nNoobde log waifu ka nam tak nahi pata..", parse_mode='Markdown', disable_web_page_preview=True)
+            xx.edit_text(f"[{guess}]({fetchUrl})\nProcessing...", parse_mode='Markdown', disable_web_page_preview=True)
         else:
             xx.edit_text("Couldn't find anything.")
             return
 
         images = scam(imgspage, lim)
         if len(images) == 0:
-            xx.edit_text(f"[{guess}]({fetchUrl})\n[Yeh lo chutiyo karo protecc]({imgspage})"
+            xx.edit_text(f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})"
                           "\nCouldn't fetch any images.", parse_mode='Markdown', disable_web_page_preview=True)
             return
 
@@ -180,6 +178,15 @@ def scam(imgspage, lim):
 
     return imglinks
 
+__help__ = f"""
+*Commands:* 
+
+• /reverse: Does a reverse image search of the media which it was replied to.
+
+Reports bugs at @IGRISBOTSUPPORT
+"""
+
+__mod_name__ = "Image Search"
 
 REVERSE_HANDLER = DisableAbleCommandHandler(
     "reverse", reverse, pass_args=True, admin_ok=True
