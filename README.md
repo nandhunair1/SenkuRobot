@@ -1,17 +1,12 @@
-![Senku](https://images8.alphacoders.com/104/1046436.jpg)
+![Aria sky](https://telegra.ph/file/2e07c92a65ea62bc925bb.jpg)
 # Senku Robot 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6141417ceaf84545bab6bd671503df51)](https://app.codacy.com/gh/AnimeKaizoku/SaitamaRobot?utm_source=github.com&utm_medium=referral&utm_content=AnimeKaizoku/SaitamaRobot&utm_campaign=Badge_Grade_Settings)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AnimeKaizoku/SaitamaRobot/graphs/commit-activity) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://perso.crans.org/besson/LICENSE.html) [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) [![Updates channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/OnePunchUpdates)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6141417ceaf84545bab6bd671503df51)](https://app.codacy.com/gh/AnimeKaizoku/SaitamaRobot?utm_source=github.com&utm_medium=referral&utm_content=AnimeKaizoku/SaitamaRobot&utm_campaign=Badge_Grade_Settings)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AnimeKaizoku/SaitamaRobot/graphs/commit-activity) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://perso.crans.org/besson/LICENSE.html)badge/Join%20Channel-!-red)](https://t.me/OnePunchUpdate)
 
 A modular Telegram Python bot running on python3 with a sqlalchemy database and an entirely themed persona to make Saitama suitable for Anime and Manga group chats. 
 
-Can be found on telegram as [SenkuRobot](https://t.me/SenkuRobot).
+Can be found on telegram as [Aria sky](https://t.me/tvseriezzz).
 
-The Support group can be reached out to at [Senku Support](https://t.me/SenkuSupport), where you can ask for help about [SenkuRobot](https://t.me/SenkuRobot), discover/request new features, report bugs, and stay in the loop whenever a new update is available. 
-
-News channel as at [Senku Updates](https://t.me/SenkuUpdates) 
-
-## How to setup/deploy.
+The Support group can be reached out to at [Aria sky Support](https://t.me/tvseriezzz), where you can ask for help about [Aria sky](https://t.me/tvseriezzz), discover/request new features, report bugs, and stay in the loop whenever a new update is available. 
 
 ### Read these notes carefully before proceeding 
  - Edit any mentions of @OnePunchSupport to your own support chat
@@ -27,9 +22,6 @@ Fill in all the details, Deploy!
 Now go to https://dashboard.heroku.com/apps/(app-name)/resources ( Replace (app-name) with your app name )
 REMEMBER: Turn on worker dyno (Don't worry It's free :D) & Webhook
 Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.com/apps/(app-name)/settings and remove webhook and port.
-```
-
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FtSasaki/SenkuRobot.git)
 
 </details>  
 <details>
@@ -56,13 +48,13 @@ An example `config.py` file could be:
 from SaitamaRobot.sample_config import Config
 
 class Development(Config):
-    OWNER_ID = 254318997  # your telegram ID
-    OWNER_USERNAME = "SonOfLars"  # your telegram username
+    OWNER_ID = 387998213  # your telegram ID
+    OWNER_USERNAME = "MrC_VENOM"  # your telegram username
     API_KEY = "your bot api key"  # your api key, as provided by the @botfather
     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost:5432/database'  # sample db credentials
     JOIN_LOGGER = '-1234567890' # some group chat that your bot is a member of
     USE_JOIN_LOGGER = True
-    DRAGONS = [18673980, 83489514]  # List of id's for users which have sudo access to the bot.
+    DRAGONS = [387998213]  # List of id's for users which have sudo access to the bot.
     LOAD = []
     NO_LOAD = ['translation']
 ```
@@ -159,7 +151,7 @@ through the `/stats` command, which is only available to the bot owner.
 
 Once you've set up your database and your configuration is complete, simply run the bat file(if on windows) or run (Linux):
 
-`python3 -m SaitamaRobot`
+`python3 -m ariaskybot2`
 
 You can use [nssm](https://nssm.cc/usage) to install the bot as service on windows and set it to restart on /gitpull 
 Make sure to edit the start and restart bats to your needs. 
