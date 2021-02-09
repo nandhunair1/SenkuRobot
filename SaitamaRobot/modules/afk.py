@@ -8,13 +8,12 @@ from telegram.ext import Filters, MessageHandler, run_async
 
 from SaitamaRobot import dispatcher
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
-from SaitamaRobot.modules.sql.afk_sql import start_afk, end_afk, is_user_afk, afk_reason
+from SaitamaRobot.modules.sql.afk_redis import start_afk, end_afk, is_user_afk, afk_reason
 from SaitamaRobot import REDIS
 from SaitamaRobot.modules.users import get_user_id
 
 from SaitamaRobot.modules.helper_funcs.alternate import send_message
 from SaitamaRobot.modules.helper_funcs.readable_time import get_readable_time
-import SaitamaRobot.modules.helper_funcs.fun_strings as fun
 
 AFK_GROUP = 7
 AFK_REPLY_GROUP = 8
@@ -38,7 +37,7 @@ def afk(update, context):
     fname = update.effective_user.first_name
     try:
         update.effective_message.reply_text(
-            "<b>{}</b> is now Away!".format(fname), parse_mode="html")
+            "{} is now Away!".format(fname))
     except BadRequest:
         pass
 
@@ -60,7 +59,7 @@ def no_longer_afk(update, context):
         firstname = update.effective_user.first_name
         try:
             message.reply_text(
-                "<b>{}</b> is now Up!\nYou were Away for : <code>{}</code>".format(firstname, end_afk_time), parse_mode="html")
+                "{} is no longer AFK!\nTime you were AFK for: {}".format(firstname, end_afk_time))
         except Exception:
             return
 
@@ -122,14 +121,26 @@ def check_afk(update, context, user_id, fst_name, userc_id):
         if reason == "none":
             if int(userc_id) == int(user_id):
                 return
-            res = "<b>{}</b> is currently AFK!\nLast Seen: <code>{}</code>".format(fst_name, since_afk)
-            update.effective_message.reply_text(res, parse_mode="html")
+            res = "{} is AFK!\nSince: {}".format(fst_name, since_afk)
+            update.effective_message.reply_text(res)
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = "<b>{}</b> is currently Away!\n<b>Reason</b>:{}\nLast Seen : <code>{}</code>".format(fst_name, reason, since_afk)
-            update.effective_message.reply_text(res, parse_mode="html")
+            res = "{} is AFK! Says it's because of:\n{}\nSince: {}".format(fst_name, reason, since_afk)
+            update.effective_message.reply_text(res)
 
+
+def __user_info__(user_id):
+    is_afk = is_user_afk(user_id)
+    text = ""
+    if is_afk:
+        since_afk = get_readable_time((time.time() - float(REDIS.get(f'afk_time_{user_id}'))))
+        text = "<i>This user is currently afk (away from keyboard).</i>"
+        text += f"\n<i>Since: {since_afk}</i>"
+       
+    else:
+        text = "<i>This user is currently isn't afk (away from keyboard).</i>"
+    return text
 
 
 def __gdpr__(user_id):
@@ -141,8 +152,8 @@ __mod_name__ = "AFK"
 
 
 __help__ = """
-  ✪ /afk <reason>*:* Mark yourself as AFK.
-  ✪ `brb <reason>`*:* Same as the afk command, but not a command.\n
+  - /afk <reason>: Mark yourself as AFK.
+  - brb <reason>: Same as the afk command, but not a command.\n
   When marked as AFK, any mentions will be replied to with a message stating that you're not available!
 """
 
@@ -156,5 +167,3 @@ dispatcher.add_handler(AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
 dispatcher.add_handler(NO_AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
-
-
