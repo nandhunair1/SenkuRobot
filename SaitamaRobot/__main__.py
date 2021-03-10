@@ -1,12 +1,13 @@
 import importlib
+import html
 import time
 import re
 from sys import argv
 from typing import Optional
 
 from SaitamaRobot import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
-                          OWNER_ID, PORT, SUPPORT_CHAT, TOKEN, URL, WEBHOOK, pbot,
-                          SUPPORT_CHAT, dispatcher, StartTime, telethn, updater)
+                          OWNER_ID, PORT, SUPPORT_CHAT, TOKEN, URL, WEBHOOK,
+                          dispatcher, StartTime, telethn, updater, pgram)
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from SaitamaRobot.modules import ALL_MODULES
@@ -53,14 +54,14 @@ def get_readable_time(seconds: int) -> str:
 PM_START_TEXT = """
 Hi {}, my name is {}! 
 I am an Anime themed group management bot.
-Build by weebs for weebs, I specialize in managing anime and similar themed groups.
+Made With ❤ I specialize in managing your group with my advance features.
+
 You can find my list of available commands with /help.
 """
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm Dr Stone & I help admins to manage their groups! Have a look at the following for an idea of some of \
-the things I can help you with.
+I'm a Teacher who will made your group secure and help admins manage their groups with Anime Sensei! Have a look at the following for an idea of some of the things I can help you with.
 
 *Main* commands available:
  • /help: PM's you this message.
@@ -77,10 +78,10 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-SAITAMA_IMG = "https://images.alphacoders.com/103/thumb-1920-1031089.jpg"
+SAITAMA_IMG = "https://telegra.ph/file/d07372591bf6830dc1c76.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
-Senku is hosted on one of Heroku's Servers and doesn't require any donations as of now but \
+Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
 You can donate to the original writer of the Base code, Paul
 There are two ways of supporting him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
@@ -200,33 +201,33 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text=" 👑 Summon Me ",
+                            text="🧲Add Koro Sensei to your group!",
                             url="t.me/{}?startgroup=true".format(
-                                context.bot.username)),
+                                context.bot.username))
+                    ],
+                     [
                          InlineKeyboardButton(
-                             text=" 🔔 Updates ",
-                             url="https://t.me/SenkuUpdates")
+                             text="⚙️ Support Group",
+                             url=f"https://t.me/tvseriezzz"),
+                         InlineKeyboardButton(
+                             text="🔔Updates Channel",
+                             url="https://t.me/TV_SERIES_ON")
                      ],
                      [
-                        InlineKeyboardButton(
-                            text=" ✨ Help ",
-                            url="https://t.me/SenkuRobot?start=help"),
                          InlineKeyboardButton(
-                            text=" ⚡️ Get Started ",
-                             url="https://t.me/SenkuUpdates/4")        
-                       
+                             text="Master",
+                             url="https://t.me/MrC_VENOM")
                      ],
                      [
-                        InlineKeyboardButton(
-                             text=" ❤️ Source Code ",
-                             url="https://github.com/FtSasaki/SenkuRobot")
-                    
-                    ]]))
+                         InlineKeyboardButton(
+                             text="💾 Source Code.",
+                             url="https://github.com/nandhunair1/SenkuRobot")
+                     ]]))
     else:
         update.effective_message.reply_text(
-            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>"
-            .format(uptime),
+            "I'm online!\n<b>Up since:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
+
 
 # for test purposes
 def error_callback(update: Update, context: CallbackContext):
@@ -538,16 +539,6 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
-
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-        try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online!")
-        except Unauthorized:
-            LOGGER.warning(
-                "Bot isnt able to send message to support_chat, go and check!")
-        except BadRequest as e:
-            LOGGER.warning(e.message)
-
     test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start)
 
@@ -599,5 +590,5 @@ def main():
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    pbot.start()
+    pgram.start()
     main()
