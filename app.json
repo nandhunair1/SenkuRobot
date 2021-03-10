@@ -1,34 +1,23 @@
 {
-      "name": "SenkuRobot",
+      "name": "Valentina Nappi",
       "description": "An Anime themed Telegram group management bot.",
       "keywords": [
          "telegram",
          "anime",
          "group",
          "manager",
-         "Senku"
+         "Valentina Nappi"
       ],   
-   "repository": "https://github.com/FtSasaki/SenkuRobot",
-   "logo": "https://64.media.tumblr.com/0b9df3c98abd7506f0aa20c7ae11cb44/15b7ca8e73e46fcc-e4/s640x960/8c4da729e10aaff950d29eaefd8e222aad5de164.jpg",
+   "repository": "https://github.com/AnimeKaizoku/SaitamaRobot",
    "addons": [
-    {
+      {
          "options": {
             "version": "12"
          },
          "plan": "heroku-postgresql"
       }
-  ],
-      
-   "buildpacks": [
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "heroku/python"
-    }     
-  ],
-      
-  "env": {
+   ],
+   "env": {
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
          "required": true,
@@ -52,11 +41,11 @@
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
-         "value": "1343957402"
+         "value": "792109647"
       },
       "OWNER_USERNAME": {
          "description": "Your username without the @",
-         "value": "UserName"
+         "value": "MrC_VENOM"
       },
       "SUPPORT_CHAT": {
          "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah. If this ever points to saitama support than consider you made an enemy.",
@@ -163,8 +152,7 @@
       "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
          "required": false,
          "value": ""
-                
-      },      
+   },      
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
